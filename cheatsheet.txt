@@ -1,0 +1,579 @@
+Data Type(CS-APS_007)
+=======================
+Comments: //Single line ... /*multiline */
+
+string = > alphanumeric (default to "")
+int => 2 billion to -2 billion (default to 0)
+double => fractional value (default to 0.0)
+bool => true or false (default to false)
+
+Note: http://is.gd/data_types
+-----------------------------
+
+Data type Conversion (CS-ASP_008)
+============================
+Implicit conversions -- smaller type to larger type
+without data loss, "upcasting"
+Explicit conversions -- require developer intervation,
+possibility of data loss, "downcasting", 
+either in the form of the cast or using helper method
+
+Casting numbers:
+int myInterger = (int)myDouble;
+
+Numbers to strings:
+string myString = myInterger.ToString();
+
+Strings to Numbers:
+int myInterger = int.Parse(mystring);
+
+More: http://is.gd/datatype_conversion
+---------------------------------------
+
+Arithmetic Operators(CS-ASP_9)
+==========================
+"=" Not equality, it's assignment
+
+Math Operators : + - * /
+total = total + 5;
+total +=5;
+
+Increment Operator : i++;
+decrement Operator: i--;
+
+Beware of order of precedence(use parenthesis"()")
+Beware of down casting (you will lose precision)
+Beware of overflow(use bigger types or "checked{}")
+
+To make overflow throw an exception:
+checked
+{
+//some arithmetic operation
+//that could potentially overflow
+}
+
+C# Syntax Lesson(CS-ASP_10)
+============================
+Operands - variable Names, Object/ Server control name, Literals 
+- "Nouns"(you name these)
+Operators - "verbs.."they act on the operands.
+
+http://is.gd/operators
+-----------------------
+Expressions - One or more operans and zero or more operator 
+that evaluate to a single value.
+http://is.gd/expressions
+-------------------------
+
+Statements - Acomplete instruction - assignment of 
+an expression to a variable, an increment/decrement, ect.
+
+http://is.gd/statement
+-----------------------
+
+Statements must end in a semi-colon";"
+Whitespace is ignored(use for humans)
+
+
+Conditional if ... else if .. else statement(CS-ASP_11)
+==========================================================
+
+= Assignment
+== Equality
+
+if (a == b)
+{
+//executes when the expression is true
+}
+else
+{
+//executes when the expression is false
+}
+
+....or.....evalution other mutually exclusively options:
+
+if (a == b){// same code}
+else if (a == c){//same code}
+else if (a == d){//same cold}
+else{//catch all}
+
+CheckBox server Control = Checked prop is bool(true or false)
+RadioButton Server Control = GroupName prop groups
+them together, check prop is bool.
+
+Conditional Ternary(suanyuan) Operator (CS-ASP_12)
+==========================================
+shortcut for evaluating an expression and returning a result.
+result   = (a == b )? "Equal" : "Not Equal";
+
+when we do numbers we don't need parenthes ""
+
+Comperason and Logical Operation (CS-APS_13)
+================================================
+Comperason Operators
+used for conditional statement
+==
+>
+<
+>=
+<=
+!==
+!someBooleanValue ---mean Not is true
+
+Logical operators
+used to combine multiple expression/evaluation
+
+&& -- And
+|| -- Or
+
+combine with parenthesis () for order of precendence
+
+Working with Dates and Times(CS-ASP_14)
+=======================================
+Creating new DateTime objects
+DateTime myDateTime = DateTime.Now;
+DateTime myDateTime = DateTime.parse("12/7/1969");
+
+formatting... many options:
+myDateTime.To_______()
+
+retriving Parts:
+myDateTime.Year//int
+myDateTime.Hour//int
+myDateTime.DayofWeek//"Monday"
+myDateTime.DayofYear//int 175
+
+DateTime Math:
+myDateTime.AddHour(3)
+myDateTime.AddMinute(-5)
+
+"chaining" = using multiple helper methods
+together with the dot .operator
+myDateTime.AddHour(3).AddMinute(-5).ToString();
+
+
+Working with spans of Time(CS-ASP_15)
+=====================================
+
+Create and initialize new TimeSpans
+
+//Days.Hours:Minutes:Second.Milliseconds
+TimeSpan myTimeSpan = TimeSpan.Parse("1.2:3:30.5")
+
+DateTime myBirthday = DateTime.Parse("12/7/1969");
+TimeSpan myAge = DateTime.Now.Substract(myBirthday);
+
+more info at : http://is.gd/timespan
+
+Get individual parts
+myAge.Hours
+myAge.Seconds
+
+
+... or get Total elapsed time
+as a double representing both
+the number of days/ hours/etc.
+AND fractional values representing
+"left overs".
+
+myTimeSpan.TotalDays // double(count how many days in between)
+Example:(if (Calendar1.SelectedDate > Calendar2.SelectedDate)
+            {
+
+                resultLabel.Text = Calendar1.SelectedDate.Subtract(Calendar2.SelectedDate).TotalDays.ToString();
+            }else
+            {
+                resultLabel.Text = Calendar2.SelectedDate.Subtract(Calendar1.SelectedDate).TotalDays.ToString();
+
+            }
+
+myTimeSpan.TotalHours // double
+
+
+
+Formatting Strings(CS-ASP_19)
+============================
+concenate Strings
++ +=
+
+Format Strings
+String.Format("Hello {0}. You are from {1}","Bob""China")
+
+Format Numbers
+string.Format("Reference Code: {0:000-000-0000}",1231231234)
+123-123-1234
+
+Formatting Dates
+http://is.gd/formattingdates
+-----------------------------
+String.Formate(Reference Date: {0: ddd-d/M/yyyy}", someDate)
+Tue-12/3/2017
+
+Formatting Currency
+http://is.gd/formattingcurrency
+String.Format("Total is: {0:C}",totalAmount);
+$9,000.00
+
+
+Single Dimensional Array(CS-ASP_21)
+======================================
+Indexes vs. Elements
+Accessor Vs. Stored Values
+Indexes are zero based
+
+Declaring Arrays
+ string[] myArray = new string[3];
+
+Declaring and Initializing Arrays
+stiong[] myArray = new string[3]{""molly","holly","bob"};
+
+Setting/Getting Values
+string myString=myArray[1]; // Retrive the second element
+myArray[0] = myString; // Sets first element
+
+
+Multi-Dimensional Array(CS-ASP_22)
+=====================================
+Same as single dimensional...just require
+more index(in dimensions) to get to the element
+
+double[,] myArray = new double[2,3]; // contains 6 elements
+int[,,] rubicsCube = new int[3,3,3]; //contains 27 elements
+
+rubicsCube[0,1,2]=42;
+myInterger = rubicsCube[0,1,2];
+
+
+jagged arrays and sparse Array, see Wikipedia for exhaustive list
+-------------------------------------------------------------------
+
+Changing the length od an array(CS-ASP_23)
+===========================================
+Arrays are immutable = cannot be change in memory
+However  .NET Framwork providers helper methods to resize an array... create a new array and copies to old values into it.
+
+Array.Resize(ref myArray,myArray.length +1);
+
+//Get the highest index
+int highestIndex = myArray.GetUpperBound(0);
+//0 = dimension we want to retrive the 
+//upper boundary for
+
+//Arrayds have other helper methods
+myArray.sum()
+myArray.Min();
+myArray.max();
+myArray.Average();
+
+myArray.Sort(myArray);
+myArray.Reverse(myArray);
+
+Looping with the "For" Iteration Statement(CS-ASP_26)
+
+Isnippet : for[tab][tab] // create the structure for you
+
+Then you can tab through the replace bits,hit enter to start writing code in the code block body.
+
+for (int i = 0; i <10; i++)
+{
+//your code
+}
+i - Any variable name 
+
+1st part - counter declaration, can be intialized to any number
+2nd part - condition, can be any expression that equates to a bool
+3rd part - increment i++/ decrement i--, can step than 1 using +-.
+string[] name = new string[] { "Wolverine", "Cyclops", "Professor X", "Phoenix"};
+
+for (int i = 0; i <names.Length; i++)
+{
+//Can search for specific value
+if (name[i] == "Professor X")
+{
+// Do sth here
+//Can break out of additional iterations if you need to
+break;
+}
+}
+
+
+Looping with the while and do...while Iteration Statements(CS-ASP_27)
+=================================================
+
+Radom random = new Random();
+//random.next(lowerBounds, upperBounds)
+random.Next(1,100); // return a value between 1 and 100
+
+//Is some expression is already false, this will never excute
+while(some expression){
+//code that would affect whether
+//someExpression is true or false
+}
+//If someExpression is already false, this will run Least ONCE!
+do{//code that would affect whether
+//someExpression is true or false
+}while(someExpression)
+
+
+Creating overloading Meathods (CS-ASP_31)
+========================================
+Different Method Signature, but same basic function.
+METHOD SIGNATURE .. the number and type of parameters Can have different return type.
+
+Creating Optional Parameters -- 32
+------------------------------------
+
+optional parameters provide default values when you define the method. so if you don't supply a value, the default will be used.
+
+private void myMethod ( string myRequireParam,
+                        int myOptionParam = 1,
+                        int myOtherOptionalParam =5);
+//Can be called ...
+myMethod("Hello required Param!");
+// or...
+myMethod("Hello required Param!",100);
+// or ...
+myMethod("Hello required Param!", 100, 500);
+// But you can not skip a parameter:
+myMethod("Hello required Param!", , 500);// ERROR
+
+Passing Named Argument Into Input parameter -- 33
+-------------------------------------------------
+
+Allow us to send in parameter argument OUT OF ORDER!
+we just prefix the input parameter argument with the name of the parameter we're passing in, a colom, the the value;
+myMethod(myOtherParam : 500,
+         myRequiredParam : "Hello required param",
+          myOptionalParam: 100);
+//you still have to pass in REQUIRED parameters.
+
+Creating METHODS with Output Parameters--34
+----------------------------------------------
+Allow you return value the normal way and return a value via a method parameter:
+
+private bool myMethod (string myRequiredParam,
+                        out int myOptionalParam){}
+
+
+
+int myValue = 0; 
+if (myMethod("Some required text, out myValue")) return"Hello World";
+
+
+Manipulating string CS-ASP-36
+==============================
+//Escape Double quotes
+string myString = "This is a double quote:\"."(or use '')
+
+// Accessing a specific char:
+myString[2]
+
+
+//StartWith(), EndWith(), Contains()
+//check to see if a given string has a set of charater beginning, end or somewhere inside. return true / false.
+
+IndexOf()
+//Find the index for one string inside of another string.
+int myString = myString.IndexOf("howdy");
+
+// Insert(); Remove()
+Insert adds charaters starting at a given index 
+Remove removes characters starting at a given index, and all the way through the length you input.
+
+//Substring()
+Retrive characters beginning at a given index all the way through the length you input
+
+//Trim(); TrimStart();TrimEnd()
+Remove the space from start or end
+
+//PadLeft(); PadRight()
+
+Allow you to specify a length for a string and a character to pad the string with if its length is less than the specified length.
+mtString = someValue.PadLeft('%');
+//Notice that we're inputting a char, so we have to use single quote.
+
+//ToUpper();ToLower()
+//Important! Compare two string regardless of the case, because in C#, two string with different cases are not Equal.
+
+//Replace()
+Replace every occurance of one string with some other string.
+myString.Replace("&&&", myValue).
+
+
+//Split()
+Take a string and split it into many strings and store them in a string array.
+string [] names = myString.Split(',');
+
+//Concatenating strings, immutability
+//StringBuilder -- mEMORY EFFICIENT way of concatenating strings.
+
+Introduce to Classes and Object(CS-ASP_36)
+=========================================
+Class is a code block that defines a data type.
+An Object is an instance of a Class.
+Metaphors:
+Blueprint vs. House
+Recpe vs. Cupcake
+Pattern vs. Bluejeans
+Cookie cutter vs. Cookies
+
+Class have members, like Properties and Methods.
+
+Properties define the atrributes that are set on the instance of the class / represent the "state" of the object. You can set (assign) and get (retrieve) properties values on an object.
+
+Methods defines actions an instance of a class can perform, usually on the object instance itself.
+
+you can create an instance of a class using the "new" keyword. think "factory".
+
+you can access the members of an object by using the member access operator, the dit(.)
+
+Conceptually, classes are delegated a responsibility in the system or represent some domain concept in the system.
+
+Classes are ultimately custom data types,more complex than the simple data types we worked with. Therefore you can use them anywhere you use other data types(like as input parameters or return values from a method.)
+
+class Car {
+
+}
+Auto Implement Properties---simple properties
+prop [tab][tab][enter][enter]
+
+"this" keyword -- Access a member of the current instance of the class.
+
+public void myMethod()
+{
+ this.year = 1976;
+}
+
+
+Creating Class file, Creating Cohesive Classes and code Navigation(CS-ASP_37)
+================================================
+Perfer more class w/ narrowly define responsibilities
+Perfer to put each class in it own file
+Perfer high cohesion - similarity/sigleness of purpose of the class members
+To achieve high cohesion, a rule of thumb: try to make your classes fit on the "screen " of your IDE(no scrolling required)
+
+Understanding Object References AND Object Lifetime(CS-ASP_38)
+=======================================================
+An object refernce variable holds a reference to an instantied object in the computer's memory.
+
+MyClass myObject;
+
+The new keyword create an instance of the class and returns the address of onject in the memory to the reference variable;
+
+myObject = new MyObject;
+
+More than one object reference variable can hold an address to the object memories.
+
+MyClass myOtherReference = myObject;(now we have two handles to hold the address)
+
+Each time new reference is added, the reference count increase by one. Each time an object reference variable goes out of scope or is set to null, the rerference count decreases by one.
+
+IF the reference count is zero, the .NET Framework Runtime's Garbage Collector removes the object from memory at an indeterminate point in time in the future. you can take control of the finalization process and even handle events just before the object is removed. see:"deterministic finalization".
+
+Understanding the .NET Framework and Compilation(CS-ASP-39)
+=======================================================The .NET Framework consists of :
+- Runtime (Common Language Runtime, CLR)"protect bubble ", manages memory, protects the user's machine,ect.
+-.NET Framework Class Library(FCL, Base Class Library, BCL) -- thousands of classes built by Microsoft for every imaginable purpose.
+
+- Compilers (C# compiler, VB compiler) - turn your human readable source code into Microsoft Intermediate Language(MSIL, IL) and packaged into a .net assembly (.exe - executable, or .dll(dinamic linked library) - class library)
+
+
+- Many other tools and features
+
+Initial compilation to intermedia Language, then a second compilation JIT- Just IN Time compilation - an optimized version of the assembly for the specific handware and software. happens at first request on that computer.
+
+
+Understanding Namespaces and the using Directive(CS-ASP_40)===============================================
+
+Namespaces disambiguate class name inside of the class libraries or applivations.
+
+you must reference class name by their full name :
+System. Text.StringBuiler sb = new System.Text.StringBuilder();
+
+...or, you can employ a using directive at the top of the code file to instruct the compiler in those namespaces to find the class that is referenced.
+
+using System.Text;
+...
+StringBuilder sb = new StringBuilder();
+you must always do this if the code you are writing is outside of the namespace of the class you want to use , even if it's in the same project.
+ 
+
+Creating class Libraries and Adding reference to Asseblies(CS-ASP_41)  
+=================================================
+Class Library project =- creats a .dll that can be referenced in other projects.
+
+Add a Reference - the FCL is split into tiny pieces, and you must reference the assemblies that contain the parts of the library you want to use.
+
+Right-Click project's reference node in solution Explorer, select Add Reference
+
+Accessibility Modifiers, Field and Properties(CS-ASP_42)
+==================================================
+
+http://v.gd/access
+
+public--Class or member can be accessed by any code
+private--Class or member can only be accessed by                  Parent Class
+internal--Class or member can only be accessed by code            inside the same assembly
+protected--Class or member can only be accessed by            parents class or devided classes
+
+Classes are internal by default
+Method and Properties are privite by default
+
+Encapsulation --Hidding Implementation behind public interfaces, reduces coupling increase plug-abilipty/resuability, maintainability,ect.
+
+
+Privite Field have two purposes:
+1) reference  to object or variable that used for internal implementation of class 
+2) hold the state of an object, backing field for public property
+
+propfull[tab][tab]
+
+private int myField;
+property int myProperty
+{
+ get(return myField);
+  
+ set{
+    if(value >100)
+     myFiled = value;
+    else
+     // tell the caller that they can't do this
+   }
+}
+
+Full property defination and private fields to control access to private fields / state of the project.
+
+
+propg[tab][tab]
+
+public int myProperty{get; private set;}
+
+Restricet setting of property to just the class internal implamentation.(only inside the class can access the property)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
