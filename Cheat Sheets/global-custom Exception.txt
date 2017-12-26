@@ -1,0 +1,91 @@
+First Pass at the Separation of Concerns Priciple(CS-ASP-55)
+========================================
+Seperate concern to mitigate the impact of change on a software system.
+
+Common :"concern"
+-Presentation logic 
+- Business/Domain logic
+- persistence logic
+
+Recommendation: Separate concern into project within a give solution.
+
+Naming Convention:
+MyApplication (Solution name)
+-- MyApplication.Presentation(.web, etc. presentation project)
+--MyApplicatopn.Domain(domain/ business rule project)
+--MyApplication.Persistance(.Data,.DB persistance project)
+
+Undersatanding Exception Handling(CS-ASP_56)
+========================================
+wrap try.. ctach around code:
+-- That you are calling into, that you didn't write
+--Code that accesses external resources
+-- Code thet accepts input from outher sources
+
+try{
+}
+catch (SpecificException ex)
+//catch more specific exception first
+//more general last
+}
+catch (Exception ex)
+//log it
+//swallow it?
+//re-throw it
+}
+finally{
+//optional .. clean up
+}
+
+Understanding Global Exception Handling(CS-ASP_57)
+========================================
+
+Unhandled exception buble up until they are exposed to the end user(aka"yellow screen of death")
+
+Best place to handle exception is the nearest local to the Exception itself. However\, you CAN handling globally.
+
+In global.asax
+
+ADD:
+
+void Application_Error(object sender, EventArgs e)
+{
+// what just happened?
+Exception ex = Sever.GetLatError();
+
+//ex will always be of type HttpUnhandledException.
+//To get to the exception that CAUSE that to happen 
+// You will need to look at the ex. InnerException.
+var innerException = ex.InnerException
+
+//Handle a sepcific type of Error differently.
+if(innerException.GetType()==
+typeof(ArgumentOutOfRangeException)
+{
+Server.Transfer(Error.aspx");
+}
+//you must do this if you want to hide the yellow page of death .. any existing exceptions after this point will send the end user the exception page.
+Server.ClearError
+}
+
+Understanding Custom Exceptions(CS-ASP_58)
+==========================================
+Inherit from Exception like so:
+public class MyCustomException: Exception
+{ ...}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

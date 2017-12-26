@@ -1,0 +1,79 @@
+Creating GUID(CS-ASP_52)
+=============================
+Globally Unique Identifier
+
+System.Guid newGuid = System.Guid.NewGuid();
+
+Working with Enumerations(CS-ASP_53)
+====================================
+A data type accepting only enumerated values that ou define. strongly typed, ridding you app of "magic strings".
+
+public enum Occupation{
+Doctor,
+Lawyer,
+Indianchief
+}
+
+Occupation whatIDo = Occupation.Indianchief;
+
+Occupation occupation;
+if (Enum. TryParse("Doctor", out occupation)){
+....
+}
+
+Creating Contants with the const keyword(CS-ASP_53B)
+======================================================Remove magic values(strings,int,etc.) using permanent immutable indentifiers.
+Only use for things that NEVER change-- not for product prices,etc. Define const at local or field.
+
+const double valueOfPi = 3.14;
+
+Understanding the switch statement(CS-ASP_54)
+==========================================
+Think: train switch ... logic based on evaluation of a variable or property value.
+switch (whatIDo){
+case Occupation.Doctor:
+...
+break;
+case Occupation.Lawyer:
+case Occupation.Indianchief:
+
+
+...
+goto case Occupation.Doctor;
+default:
+...
+break;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,146 @@
+Persistence because other layers would be dependent on it!
+
+Creating a New Instance of an Entity and Persisting to the Database (CS-ASP-65)
+===============================================================================
+
+var customer = new Customer();
+//Populate properties of customer
+dbCustomers.Add(customer);
+db.SaveChanges();
+
+Filtering DbSets using LINQ method syntax:
+
+ACMEEntities db = new ACMEEntities;
+var customers = db.Customers.OrderBy(p => p.Name).ToList();
+var customers = db.Customers.where(p => p.Name =="Bob").ToList();
+
+(Lambda Expression - 'mini methods')
+
+Package Managemelnt with NuGet(CS-ASP-66)
+==========================================
+Package Manager - installs files , folders, adds references to third party packages supplying common functionality.
+
+Adds dependencies.
+Updates packages and denpendencies.
+
+Tools > NutGet Package Manager > Manager NuGet Packages for Solution ...>Manage NuGet Packages Dialog
+
+Tools > NutGet Package Manager > Package Manager Console
+Install - Package elmah
+Update - Package elmah
+
+Package .config file keeps track of packages, dependencies and versions.
+
+NuGet No-Commit Workflow (CS-ASP-67)
+===================================
+
+ solution Explorer > Right-click Solution > Enable NuGet Package Restore
+Add a .nuget folder in the project.
+
+Or, go to the manage NuGet Packages dialog and Click the restore button at the top (yellow area)
+
+
+Introduction to the Twitter Bootstrap CSS Framework(CS-ASP-68)
+=============================================================
+
+ADD Reference:  bootstrap.min.css/ jquery.min.js/bootstrap.min.js
+
+Complete Reference 
+Http://getbootStrap.com/css/
+
+              <div class ="row">
+              <div class="col-md-8 col-sm-6 col-xs-8"></div>
+                <div class="col-md-4 col-sm-6 col-xs-4"></div>
+             </div>
+          
+
+             <div class="form-group">
+               <label>Text Box:  </label> 
+               <asp:TextBox ID="testTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+              </div>
+
+            <div class="form-group">
+               <label>Drop Down List:  </label> 
+               <asp:DropDownList ID="testDropDownList" runat="server" CssClass="form-control">
+               <asp:ListItem Text ="Option1" Value="Small" />
+               <asp:ListItem Text ="Option2" Value="Medium" />
+               <asp:ListItem Text ="Option3" Value="Large" />
+               </asp:DropDownList>
+             </div>
+
+       <div class="checkBox"><label><asp:CheckBox ID="testCheckBox" runat="server"></asp:CheckBox>
+        CheckBox</label></div>
+
+             <div class="radioButton"><label><asp:RadioButton ID="testRadioButton1" runat="server" GroupName ="TestGroup"></asp:RadioButton>RadioButton 1</label></div>
+             <div class="radioButton"><label><asp:RadioButton ID="testRadioButton2" runat="server" GroupName ="TestGroup"></asp:RadioButton>RadioButton 2</label></div>
+
+            <asp:Button ID="testButton" runat="server" Text="Text" CssClass="btn btn-lg btn-primary" ></asp:Button>
+
+
+Mapping Enum Types To Entity Properties in the EntityFramwork Designer(CS-ASP-69)
+====================================================================================
+
+  Public enum BallType{
+
+     Baseball = 0,
+     Basketball =1,
+     Football =2,
+}
+ You can change the "Seed":
+
+// Implies 1,2,3
+Public enum BallType{
+
+     Baseball = 1,
+     Basketball,
+     Football,
+}
+ The Entity Framework Designer maps enums to int data types.
+
+In Entity Data Model Diagram(EDMD)
+-Right-Click Column
+-Select Convert to Enum
+-In the Add Enum Type Dialog, either:
+== select Reference external type, enter namespace + type, or ...
+== enter Enum Type Name, enter Member and Optional Values
+
+Developing the App to Microsofet Azeure App Service Web Apps(CS-ASP-70)
+
+Solution Explorer > Right-Click Project Name > Publish ...
+
+MAKE SURE YOU DELETE THE PUBLISHSETTING BEFORE DISTRIBUTING YOUR SOURCE CODE TO OTHERS.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

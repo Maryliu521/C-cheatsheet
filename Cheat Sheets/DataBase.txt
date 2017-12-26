@@ -1,0 +1,153 @@
+Creating a Database in Visual Studio (CS-ASP-59)
+==========================================
+LocalDb - Local dev-only version of SQL Server
+
+Project > Add New Item .. > Installed > Data > SQL Server Databases: Create an .mdf file
+
+SQL Sever Data Tools (SSDT) - Tools to create and manage SQL Sever Databases from Visual Studio.
+
+Createing an Entity Model in Visual Studio(CS-ASP-60)
+==================================
+Entity Data Model -- Object-Relational Mapper to treat database tables columns as classes w/ properties
+
+Project > Add New Item ... > Data > ADO.NET Entity Data Model > Entity Data Model Wizard > EF Designer from Database > Connection > Database objects
+
+DbContext== Handle to entity model > database
+DbSet == Collection of all entities in Dbcontext
+
+ACMEEntities db = new ACMEEntities;
+var dbcustomers = db.customers;
+
+Displaing the DbSet Result in an ASP.NET GridView(CS-ASP-61)
+==========================================
+GridView Sever Control - Databinds to enumerable collections of object and renders in a tabular format.
+
+Must call ToList() on a Dbset to bind a databound control
+
+gridControl.DataSource = dbCustomers.ToList();
+gridControl.DataBind();
+
+Implementing a Button Command in a GridView(CS-ASP-62)
+=====================================
+
+Click Chevron => GridView Tasks > Edit Colums ..
+
+BoundField - Databind to a object property
+Boundfield - HyperlinkButton
+
+Handle button click in the GridView RowCommand event handler.
+
+protected void GridView1_RowCommand(Object sender, GridViewCommandEventArgs e)
+{
+  //Retrive the Row Clicked in the grid.
+  
+ int index = Convert.ToInt32(e.CommandArgument);
+GridViewRow row = GridView1.Rows[index];
+
+// Access cells is risky because the order of the culumns may change over time and you might forget that this code depends on it! Also ... 0 based!
+
+var someValue = row.Cells[1].Text;
+
+
+Using a Tools- Centric Approach to building a Database Application(CS-ASP-63)
+
+==========================================
+Tool- Centric Approach / Workflow = use Visual Studio's designers, tools, ect. to build applications w/ minimal code.
+
+Greate for small, departmental apps with very little business logic, change is noe anticipated and there is a tight timeframe.
+
+Using a Maintenance-Centric Approach to Building a Database Application(CS-ASP-64)
+====================================
+Maintenance-Centric appriach / withflow = Anticipate change,migate it's negative effects on sofeware by seprating concerns, appling testing, ect.
+Greate for larger, enterprise scale apps with many business rules, where change is anticipates because it is crucial to the operation of the business and there's a longer development timeframe.
+
+Presatation > Domain > Persistaence
+
+DTO= Data Transfer Object -- Model used for tranfering from one to another one to avoid a leaky abstraction. Ex., I don't want Entity Framework leaking out of persistence because other layers would be dependent on it!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
